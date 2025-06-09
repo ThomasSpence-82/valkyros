@@ -1,0 +1,67 @@
+site_name: Valkyros Engine Documentation
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.top
+    - toc.integrate
+    - content.code.copy
+    - content.tabs.link
+    - search.highlight
+    - search.suggest
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+
+nav:
+  - Home: 00_project_overview.md
+  - Module Roadmap: 01_module_roadmap.md
+  - From Primal to Valkyros: 02_primal_to_valkyros.md
+  - Design Log: 03_design_log.md
+  - Graphics Pipeline: 04_graphics_pipeline.md
+  - GUI Architecture: 05_gui_architecture.md
+  - Design:
+      - Overview: 01_design/index.md
+  - Planning:
+      - Timeline: 02_planning/timeline.md
+  - Specs:
+      - Spec Index: 03_specs/index.md
+  - Dev Logs:
+      - Template: 04_devlogs/devlog_template.md
+  - Technical Reference:
+      - TOC: 05_techref/index.md
+  - Ideas:
+      - Idea Log: 06_ideas/ideas.md
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - tables
+  - admonition
+  - codehilite
+  - footnotes
+  - attr_list
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - pymdownx.critic
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/yourusername/valkyros
+      name: Valkyros on GitHub
