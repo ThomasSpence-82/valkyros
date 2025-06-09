@@ -1,67 +1,84 @@
 site_name: Valkyros Engine Documentation
+site_description: >-
+  Developer documentation for the Valkyros Engine, a AAA-grade, cross-platform 3D game engine using Vulkan and C++.
+site_author: Thomas [YourNameHere]
+site_url: http://localhost:8000/
+repo_url: https://github.com/yourusername/valkyros
+repo_name: GitHub
 theme:
   name: material
+  language: en
   features:
     - navigation.tabs
-    - navigation.top
+    - navigation.sections
     - toc.integrate
-    - content.code.copy
-    - content.tabs.link
-    - search.highlight
     - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.action.edit
+    - content.tabs.link
   palette:
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
+    - scheme: default
       primary: indigo
       accent: indigo
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
+    - scheme: slate
       primary: indigo
-      accent: indigo
-
+      accent: lime
+      toggle:
+        icon: material/lightbulb
+        name: Switch to dark mode
 nav:
-  - Home: 00_project_overview.md
-  - Module Roadmap: 01_module_roadmap.md
-  - From Primal to Valkyros: 02_primal_to_valkyros.md
-  - Design Log: 03_design_log.md
-  - Graphics Pipeline: 04_graphics_pipeline.md
-  - GUI Architecture: 05_gui_architecture.md
-  - Design:
-      - Overview: 01_design/index.md
+  - Home: index.md
+  - Overview:
+      - Project Overview: 00_project_overview.md
+      - Module Roadmap: 01_module_roadmap.md
+      - From Primal to Valkyros: 02_primal_to_valkyros.md
+      - Design Log: 03_design_log.md
+  - Engine Design:
+      - Graphics Pipeline: 04_graphics_pipeline.md
+      - GUI Architecture: 05_gui_architecture.md
+      - Design Docs Index: 01_design/index.md
   - Planning:
       - Timeline: 02_planning/timeline.md
   - Specs:
-      - Spec Index: 03_specs/index.md
+      - Specifications Index: 03_specs/index.md
   - Dev Logs:
-      - Template: 04_devlogs/devlog_template.md
+      - DevLog Template: 04_devlogs/devlog_template.md
   - Technical Reference:
-      - TOC: 05_techref/index.md
+      - Tech Reference Index: 05_techref/index.md
   - Ideas:
-      - Idea Log: 06_ideas/ideas.md
-
+      - Engine Ideas: 06_ideas/ideas.md
+  - Meta:
+      - Style Guide: style_guide.md
+      - Build Notes: build_notes.md
 markdown_extensions:
-  - toc:
-      permalink: true
-  - tables
   - admonition
   - codehilite
   - footnotes
-  - attr_list
-  - pymdownx.superfences
-  - pymdownx.tabbed:
-      alternate_style: true
+  - meta
+  - toc:
+      permalink: true
+  - tables
   - pymdownx.details
-  - pymdownx.critic
+  - pymdownx.superfences
+  - pymdownx.highlight
   - pymdownx.inlinehilite
   - pymdownx.keys
-  - pymdownx.magiclink
-  - pymdownx.mark
-  - pymdownx.smartsymbols
-  - pymdownx.tasklist:
-      custom_checkbox: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+plugins:
+  - search
+  - awesome-pages
+  - macros
+  - mkdocs_macros
+  - git-revision-date-localized
+  - glightbox
 
 extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/yourusername/valkyros
-      name: Valkyros on GitHub
+  version:
+    provider: git

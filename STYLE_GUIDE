@@ -1,0 +1,34 @@
+# Valkyros Engine Style Guide
+
+This document outlines the coding conventions and style rules followed in the Valkyros engine to maintain clarity, consistency, and professionalism.
+
+## General Principles
+
+- Use **modern C++17/20** features where appropriate.
+- Prefer **constexpr**, **auto**, and **smart pointers** (unique_ptr, shared_ptr).
+- Follow **RAII** for resource management.
+- Use **namespaces** to avoid symbol collisions, e.g., `valkyros::core`.
+
+## Naming Conventions
+
+- Files and folders: lowercase with underscores (`engine_core.h`, `sandbox_app.cpp`)
+- Classes and structs: PascalCase (`RenderEngine`, `InputManager`)
+- Functions and variables: camelCase (`initializeEngine()`, `frameCount`)
+- Constants: ALL_CAPS_WITH_UNDERSCORES (`MAX_FRAME_RATE`)
+
+## Formatting
+
+- Indentation: 4 spaces, no tabs
+- Line length: 120 characters max
+- Braces: K&R style (opening brace on the same line)
+- Comment style: use Doxygen style for API documentation
+- Use `//` for short comments, `/* ... */` for longer explanations
+
+## Documentation
+
+- Every public API must have Doxygen comments.
+- Use meaningful commit messages, referencing issue IDs where possible.
+
+---
+
+Additions and refinements will be made as the project evolves.

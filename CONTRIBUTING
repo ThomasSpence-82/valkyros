@@ -1,0 +1,19 @@
+# Contributing to Valkyros Engine
+
+Thank you for your interest in contributing to Valkyros! We welcome contributions of all kinds: bug fixes, feature additions, documentation improvements, and more.
+
+## How to Contribute
+
+1. Fork the repository and create your branch from `main`.
+2. Write clear, concise commit messages.
+3. Follow the style guide and existing code conventions.
+4. Write tests where applicable.
+5. Submit a pull request with a description of your changes.
+
+## Code of Conduct
+
+Please follow respectful and professional communication at all times.
+
+---
+
+See [README.md](README.md) for more information.

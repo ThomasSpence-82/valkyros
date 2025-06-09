@@ -1,0 +1,40 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.vcxproj.user
+*.db
+*.VC.db
+*.VC.opendb
+*.pdb
+*.ilk
+*.obj
+*.exe
+*.log
+*.idb
+*.ipch
+*.aps
+*.ncb
+*.sdf
+*.opensdf
+*.cachefile
+*.tlog/
+*.lastbuildstate
+
+# Build folders
+build/
+bin/
+Debug/
+Release/
+
+# Others
+*.DS_Store
+Thumbs.db
+*.tmp
+*.log
+
+# Obsidian vault (optional)
+vault/.obsidian/workspace
+
+# MkDocs site build folder
+site/
