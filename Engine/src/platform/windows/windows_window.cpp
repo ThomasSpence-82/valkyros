@@ -5,6 +5,11 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include <sstream>
+#include <windows.h>
+#include <dxgi1_2.h>
+#include <wrl/client.h>
+
+#pragma comment(lib, "dxgi.lib")
 
 namespace Valkyros {
 
@@ -56,11 +61,83 @@ void WindowsWindow::Init(const WindowProps& props) {
     glfwMakeContextCurrent(m_Window);
     glfwSwapInterval(1); // Enable V-Sync
     
-    // Print OpenGL version
+    // Print OpenGL version and renderer info
     const GLubyte* renderer = glGetString(GL_RENDERER);
     const GLubyte* version = glGetString(GL_VERSION);
-    std::cout << "[WindowsWindow::Init] OpenGL Renderer: " << renderer << std::endl;
+    const GLubyte* vendor = glGetString(GL_VENDOR);
+    
+    // Store the GPU name for the window title
+    m_GPUNames.clear();
+    m_GPUNames.push_back(reinterpret_cast<const char*>(renderer));
+    
+    // List all available GPUs using DXGI
+    std::cout << "[WindowsWindow::Init] Enumerating all available GPUs..." << std::endl;
+    
+    // First show the active OpenGL GPU
+    std::cout << "  - " << vendor << " " << renderer << " (Active - OpenGL)" << std::endl;
+    
+    // Store GPU information for potential future use (GPU switching, settings, etc.)
+    m_GPUNames.clear();
+    m_GPUNames.push_back(reinterpret_cast<const char*>(renderer));
+    
+    // TODO: Replace with proper GPU info structure when implementing settings
+    // struct GPUInfo {
+    //     std::string name;
+    //     size_t vramMB;
+    //     uint32_t vendorID;
+    //     bool isActive;
+    // };
+    // std::vector<GPUInfo> gpuList;
+    
+    // Enumerate all adapters using DXGI
+    Microsoft::WRL::ComPtr<IDXGIFactory1> pFactory;
+    if (SUCCEEDED(CreateDXGIFactory1(IID_PPV_ARGS(&pFactory)))) {
+        IDXGIAdapter1* pAdapter = nullptr;
+        for (UINT i = 0; pFactory->EnumAdapters1(i, &pAdapter) != DXGI_ERROR_NOT_FOUND; ++i) {
+            DXGI_ADAPTER_DESC1 desc;
+            if (SUCCEEDED(pAdapter->GetDesc1(&desc))) {
+                // Skip software adapter
+                if (desc.Flags & DXGI_ADAPTER_FLAG_SOFTWARE) {
+                    pAdapter->Release();
+                    continue;
+                }
+                
+                // Convert wchar_t to char for console output
+                char gpuName[256];
+                wcstombs_s(nullptr, gpuName, desc.Description, 256);
+                
+                // Get dedicated video memory in MB
+                double videoMemoryMB = static_cast<double>(desc.DedicatedVideoMemory) / (1024.0 * 1024.0);
+                
+                // Output GPU info to console
+                std::cout << "  - " << gpuName 
+                          << " (VRAM: " << static_cast<int>(videoMemoryMB) << " MB, "
+                          << "VendorID: 0x" << std::hex << desc.VendorId << std::dec << ")" << std::endl;
+                          
+                // TODO: Store this information when implementing GPU switching
+                // GPUInfo gpuInfo;
+                // gpuInfo.name = gpuName;
+                // gpuInfo.vramMB = static_cast<size_t>(videoMemoryMB);
+                // gpuInfo.vendorID = desc.VendorId;
+                // gpuInfo.isActive = (m_GPUNames[0].find(gpuName) != std::string::npos);
+                // gpuList.push_back(gpuInfo);
+            }
+            pAdapter->Release();
+        }
+    }
+    
+    // Print OpenGL version
     std::cout << "[WindowsWindow::Init] OpenGL Version: " << version << std::endl;
+    
+    // Update window title with GPU info
+    UpdateWindowTitle();
+}
+
+void WindowsWindow::UpdateWindowTitle() {
+    if (!m_GPUNames.empty() && m_Window) {
+        std::string title = m_Title + " | " + m_GPUNames[0] + " | FPS: 0";
+        glfwSetWindowTitle(m_Window, title.c_str());
+    }
 }
 
 void WindowsWindow::Shutdown() {
@@ -79,6 +156,7 @@ void WindowsWindow::OnUpdate() {
     if (m_Window) {
         static int frameCount = 0;
         static double lastTime = glfwGetTime();
+        static double lastFPSTime = lastTime;
         
         glfwPollEvents();
         
@@ -98,13 +176,19 @@ void WindowsWindow::OnUpdate() {
         
         glfwSwapBuffers(m_Window);
         
-        // Print FPS every second
+        // Calculate and update FPS in window title
         frameCount++;
         double currentTime = glfwGetTime();
-        if (currentTime - lastTime >= 1.0) {
-            std::cout << "[WindowsWindow::OnUpdate] FPS: " << frameCount << std::endl;
+        
+        // Update FPS counter every 0.1 seconds for smoother display
+        if (currentTime - lastFPSTime >= 0.1) {
+            double fps = frameCount / (currentTime - lastFPSTime);
+            if (!m_GPUNames.empty() && m_Window) {
+                std::string title = m_Title + " | " + m_GPUNames[0] + " | FPS: " + std::to_string(static_cast<int>(fps));
+                glfwSetWindowTitle(m_Window, title.c_str());
+            }
+            lastFPSTime = currentTime;
             frameCount = 0;
-            lastTime = currentTime;
         }
     } else {
         std::cerr << "[WindowsWindow::OnUpdate] No valid window!" << std::endl;
