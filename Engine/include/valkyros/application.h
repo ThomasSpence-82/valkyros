@@ -1,20 +1,18 @@
 #pragma once
 
-struct GLFWwindow;  // Forward declaration instead of #include <GLFW/glfw3.h>
+#include "valkyros/core/window.h"
 
 namespace Valkyros {
 
-    class Application
-    {
+    class Application {
     public:
         Application();
-        ~Application();
+        virtual ~Application();
 
         void Run();
 
     private:
-        GLFWwindow* m_Window = nullptr;
-        const char* m_GlslVersion = "#version 330";
+        WindowPtr m_Window;
     };
 
 }
