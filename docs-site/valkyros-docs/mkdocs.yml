@@ -1,4 +1,20 @@
 site_name: Valkyros Engine Documentation
+
+docs_dir: ../../obsidian-vault
+
+# Exclude Obsidian-specific files
+exclude_docs: |
+  .obsidian/
+  .trash/
+  *.canvas
+  *.canvas
+  *.excalidraw
+  *.excalidrawlib
+  *.excalidraw
+  *.excalidrawlib
+  *.excalidraw.bak
+  *.excalidrawlib.bak
+  *.excalidraw~
 site_description: >-
   Developer documentation for the Valkyros Engine, a AAA-grade, cross-platform 3D game engine using Vulkan and C++.
 site_author: Thomas [YourNameHere]
@@ -71,10 +87,6 @@ markdown_extensions:
 plugins:
   - search
   - awesome-pages
-  - macros
-  - mkdocs_macros
-  - git-revision-date-localized
-  - glightbox
 
 extra:
   social:
