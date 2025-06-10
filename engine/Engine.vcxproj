@@ -25,18 +25,25 @@
     <ClInclude Include="include\valkyros\core\window.h" />
     <ClInclude Include="include\valkyros\platform_detection.h" />
     <ClInclude Include="include\valkyros\platform\windows\windows_window.h" />
+    <ClInclude Include="include\valkyros\vendor\glad\glad.h" />
+    <ClInclude Include="include\valkyros\vendor\glad\khrplatform.h" />
+    <ClInclude Include="include\valkyros\vendor\imgui\imconfig.h" />
+    <ClInclude Include="include\valkyros\vendor\imgui\imgui.h" />
+    <ClInclude Include="include\valkyros\vendor\imgui\imgui_internal.h" />
+    <ClInclude Include="include\valkyros\vendor\imgui\imstb_rectpack.h" />
+    <ClInclude Include="include\valkyros\vendor\imgui\imstb_textedit.h" />
+    <ClInclude Include="include\valkyros\vendor\imgui\imstb_truetype.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\third_party\glad\src\glad.c" />
-    <ClCompile Include="..\third_party\imgui\backends\imgui_impl_glfw.cpp" />
-    <ClCompile Include="..\third_party\imgui\backends\imgui_impl_opengl3.cpp" />
-    <ClCompile Include="..\third_party\imgui\imgui.cpp" />
-    <ClCompile Include="..\third_party\imgui\imgui_draw.cpp" />
-    <ClCompile Include="..\third_party\imgui\imgui_tables.cpp" />
-    <ClCompile Include="..\third_party\imgui\imgui_widgets.cpp" />
     <ClCompile Include="src\core\application.cpp" />
     <ClCompile Include="src\core\window.cpp" />
     <ClCompile Include="src\platform\windows\windows_window.cpp" />
+    <ClCompile Include="src\vendor\glad\glad.c" />
+    <ClCompile Include="src\vendor\imgui\imgui.cpp" />
+    <ClCompile Include="src\vendor\imgui\imgui_demo.cpp" />
+    <ClCompile Include="src\vendor\imgui\imgui_draw.cpp" />
+    <ClCompile Include="src\vendor\imgui\imgui_tables.cpp" />
+    <ClCompile Include="src\vendor\imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -99,7 +106,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Engine\include;$(SolutionDir)third_party\glfw\include;$(SolutionDir)third_party\imgui;$(SolutionDir)third_party\glad\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Engine\include;$(SolutionDir)third_party\glfw\include;$(SolutionDir)Engine\include\valkyros\vendor;$(SolutionDir)third_party\glad\include;$(SolutionDir)third_party\imgui</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -119,7 +126,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Engine\include;$(SolutionDir)third_party\glfw\include;$(SolutionDir)third_party\imgui;$(SolutionDir)third_party\glad\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Engine\include;$(SolutionDir)third_party\glfw\include;$(SolutionDir)Engine\include\valkyros\vendor;$(SolutionDir)third_party\glad\include;$(SolutionDir)third_party\imgui</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -137,7 +144,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Engine\include;$(SolutionDir)third_party\glfw\include;$(SolutionDir)third_party\imgui;$(SolutionDir)third_party\glad\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Engine\include;$(SolutionDir)third_party\glfw\include;$(SolutionDir)Engine\include\valkyros\vendor;$(SolutionDir)third_party\glad\include;$(SolutionDir)third_party\imgui</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -157,7 +164,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Engine\include;$(SolutionDir)third_party\glfw\include;$(SolutionDir)third_party\imgui;$(SolutionDir)third_party\glad\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Engine\include;$(SolutionDir)third_party\glfw\include;$(SolutionDir)Engine\include\valkyros\vendor;$(SolutionDir)third_party\glad\include;$(SolutionDir)third_party\imgui</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
